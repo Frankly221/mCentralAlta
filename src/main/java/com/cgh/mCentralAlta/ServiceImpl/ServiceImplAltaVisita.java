@@ -81,12 +81,7 @@ public class ServiceImplAltaVisita implements ServiceAltaVisita {
         // Actualizar los campos necesarios
         existingVisita.setSnActivo(altaVisita.getSnActivo());
         existingVisita.setDhReabierto(LocalDateTime.now());
-        existingVisita.setCdUsuario(user.toUpperCase());
         
-        // Si hay observaciones, actualizarlas
-        if (altaVisita.getDsObservacion() != null && !altaVisita.getDsObservacion().isEmpty()) {
-            existingVisita.setDsObservacion(altaVisita.getDsObservacion());
-        }
 
         // Guardar los cambios
         return repositoryAltaVisita.save(existingVisita);
