@@ -73,11 +73,10 @@ public class ServiceImplAltaVisita implements ServiceAltaVisita {
 
         // Verificar si se encontró el registro
         if (existingVisita == null) {
-            System.out.println("No se encontró ningún registro con esos criterios");
-            return null; // No se encontró el registro para actualizar
+
+            throw new RuntimeException("No se encontró la visita para actualizar");
         }
 
-        System.out.println("Registro encontrado, actualizando...");
         
         // Actualizar los campos necesarios
         existingVisita.setSnActivo(altaVisita.getSnActivo());
