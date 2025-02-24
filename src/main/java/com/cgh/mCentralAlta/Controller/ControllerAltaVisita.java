@@ -32,13 +32,12 @@ public class ControllerAltaVisita {
         }
     }
 
-    @PutMapping("/{user}/{password}")
-    public ResponseEntity<?> actualizarAltaVisita(@RequestBody AltaVisita altaVisita,
-                                                
-                                                 @PathVariable("user") String user,
-                                                 @PathVariable("password") String password) {
+    @PutMapping("/{activo}")
+    public ResponseEntity<?> actualizarAltaVisita(@RequestBody AltaVisita altaVisita,                                              
+                                                 @PathVariable("activo") String activo
+) {
         try {
-            AltaVisita resultado = serviceImplAltaVisita.update(altaVisita, user, password);
+            AltaVisita resultado = serviceImplAltaVisita.update(altaVisita,activo);
             if (resultado != null) {
                 return ResponseEntity.ok(resultado);
             } else {

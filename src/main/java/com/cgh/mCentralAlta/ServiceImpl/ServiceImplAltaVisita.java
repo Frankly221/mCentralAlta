@@ -49,26 +49,12 @@ public class ServiceImplAltaVisita implements ServiceAltaVisita {
     }
 
     @Override
-    public AltaVisita update(AltaVisita altaVisita, String user, String password) {
-        // Verificamos si el usuario existe y está autenticado
-        String authQuery = "SELECT COUNT(*) FROM DBASGU.USUARIOS U " +
-                "WHERE U.CD_USUARIO = ? AND UPPER(DBAADV.VER_CONTRASENA(U.CD_USUARIO)) = ?";
-
-        Query authStmt = entityManager.createNativeQuery(authQuery);
-        authStmt.setParameter(1, user.toUpperCase());
-        authStmt.setParameter(2, password.toUpperCase());
-
-        Long authCount = ((Number) authStmt.getSingleResult()).longValue();
-
-        if (authCount == 0) {
-            throw new RuntimeException("Autenticación fallida para el usuario: " + user);
-        }
-        
-
+    public AltaVisita update(AltaVisita altaVisita,String activo) {
+     
         // Buscar el registro existente
-        AltaVisita existingVisita = repositoryAltaVisita.findByCdAtendimentoAndCdUnidInt(
+        AltaVisita existingVisita = repositoryAltaVisita.findByCdAtendimentoAndSnActivo(
             altaVisita.getCdAtendimento(), 
-            altaVisita.getCdUnidInt()
+            activo
         );
 
         // Verificar si se encontró el registro

@@ -8,6 +8,6 @@ import com.cgh.mCentralAlta.Entity.AltaVisita;
 @Repository
 public interface RepositoryAltaVisita extends JpaRepository<AltaVisita, Long> {
 
-    AltaVisita findByCdAtendimentoAndCdUnidInt(Long cdAtendimento, Long cdUnidInt);
+    AltaVisita findByCdAtendimentoAndSnActivo(Long cdAtendimento, String activo);
     
 }
